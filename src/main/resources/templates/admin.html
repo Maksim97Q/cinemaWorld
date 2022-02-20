@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/admin.css" th:href="@{/css/admin.css}">
+    <title>Page Admin</title>
+</head>
+<div th:insert="link :: links"></div>
+<body>
+<h2>Таблица всех пользователей</h2>
+<table class="table" style="width: 30%">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>password</th>
+        <th>delete</th>
+    </tr>
+    <tr th:each="user, lp : ${allUsers}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.getUsername}"></td>
+        <td th:text="${user.password}"></td>
+        <td><a th:href="@{'/Admin/delete/' + ${user.id}}" th:text="удалить"></a></td>
+    </tr>
+<!--    <tr>-->
+<!--        <form action="Update" method="post">-->
+<!--            <input type="text" name="id" placeholder="id">-->
+<!--            <input type="text" name="name1" placeholder="update_Name">-->
+<!--            <input type="text" name="password1" placeholder="update_password">-->
+<!--            <input type="submit" value="update">-->
+<!--        </form>-->
+<!--    </tr>-->
+</table>
+</body>
+</html>

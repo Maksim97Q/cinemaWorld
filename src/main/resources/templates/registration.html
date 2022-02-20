@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/authorization.css" th:href="@{/css/authorization.css}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="link :: links"></div>
+<!--<div th:if="${if} == false">-->
+<!--    <h4>Такой логин уже существует, введите другой</h4>-->
+<!--</div>-->
+<div class="loginAndRegistration">
+    <form action="/Registration" method="post">
+        <input type="text" name="username" placeholder="username" maxlength="13"
+               required="required"><br> <br>
+        <input  type="text" name="password" placeholder="password" maxlength="13"
+               required="required"><br> <br>
+        <input type="submit" value="registration">
+    </form>
+</div>
+</body>
+</html>
