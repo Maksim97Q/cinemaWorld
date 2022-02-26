@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "t_role")
+@Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
     private Long id;

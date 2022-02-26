@@ -7,16 +7,13 @@
 </head>
 <body>
 <div th:insert="link :: links"></div>
-<div th:if="${if} == false">
-    <h4>Такой логин уже существует, введите другой</h4>
-</div>
 <div class="loginAndRegistration">
-    <form action="/Registration" method="post" th:object="${userAdd}">
-        <input th:field="*{username}" type="text" placeholder="username" maxlength="13"
+    <form method="post" action="#" th:action="@{'/Admin/update/' + ${userForm.id}}" th:object="${userForm}">
+        <input th:field="*{username}" type="text" name="username" placeholder="username" maxlength="13"
                required="required"><br> <br>
-        <input th:field="*{password}" type="text" placeholder="password" maxlength="13"
+        <input th:field="*{password}" type="text" name="password" placeholder="password" maxlength="13"
                required="required"><br> <br>
-        <input type="submit" value="registration">
+        <input type="submit" value="update">
     </form>
 </div>
 </body>

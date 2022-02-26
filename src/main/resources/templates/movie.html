@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--    <link rel="stylesheet" type="text/css" href="/static/css/admin.css" th:href="@{/css/admin.css}">-->
+    <title>Page Movie</title>
+</head>
+<div th:insert="link :: links"></div>
+<body>
+<h2>Таблица всех пользователей</h2>
+<form method="post" action="/Movie" th:object="${movieAdd}">
+    <input th:field="*{name_Movie}" type="text" name="nameMovie" placeholder="nameMovie" maxlength="20"
+           required="required"><br> <br>
+    <input th:field="*{date}" type="text" name="date" placeholder="date"
+           required="required"><br> <br>
+    <input type="submit" value="добавить">
+</form>
+<table class="table" style="width: 30%">
+    <tr>
+        <th>id</th>
+        <th>nameMovie</th>
+        <th>date</th>
+        <th>delete</th>
+        <th>update</th>
+    </tr>
+    <tr th:each="user, lp : ${AllMovie}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name_Movie}"></td>
+        <td th:text="${user.date}"></td>
+    </tr>
+</table>
+</body>
+</html>

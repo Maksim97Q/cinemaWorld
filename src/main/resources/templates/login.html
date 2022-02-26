@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/authorization.css" th:href="@{/css/authorization.css}">
     <meta charset="UTF-8">
@@ -7,6 +7,9 @@
 </head>
 <body>
 <div th:insert="link :: links"></div>
+<div th:if="${param.error}">
+    <h4>Неправильный логин или пароль</h4>
+</div>
 <div class="loginAndRegistration">
     <form method="post" action="/login">
         <input type="text" name="username" placeholder="username" maxlength="13"

@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en" th:fragment="links"
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/link.css" th:href="@{/css/link.css}">
 </head>
 <body>
-<div class="links">
-    <div sec:authorize="!isAuthenticated()">
-        <a href="/Registration">Registration</a>
-        <a href="/login">Login</a>
+<div th:insert="link :: links"></div>
+<div sec:authorize="isAuthenticated()">
+    <h4>Добро пожаловать!</h4>
+    <div sec:authorize="hasRole('ADMIN')">
+        <h4>вы вошли как администратор</h4>
     </div>
-    <div sec:authorize="isAuthenticated()">
-        <a href="/logout">Logout</a>
-    </div>
-    <a href="/Admin">Admin</a>
-    <a href="/User">User</a>
 </div>
 </body>
 </html>
