@@ -6,11 +6,11 @@
 </head>
 <div th:insert="link :: links"></div>
 <body>
-<h2>Таблица всех пользователей</h2>
-<form method="post" action="/Movie" th:object="${movieAdd}">
-    <input th:field="*{name_Movie}" type="text" name="nameMovie" placeholder="nameMovie" maxlength="20"
-           required="required"><br> <br>
-    <input th:field="*{date}" type="text" name="date" placeholder="date"
+<h2>Таблица всех фильмов</h2>
+<form method="post" action="/Movie/add" th:object="${movieAdd}">
+    <input th:field="*{name_Movie}" type="text" name="name_Movie" placeholder="nameMovie" maxlength="20"
+           required="required"><br><br>
+    <input th:field="*{dates}" type="datetime-local" name="dates" placeholder="date"
            required="required"><br> <br>
     <input type="submit" value="добавить">
 </form>
@@ -22,10 +22,12 @@
         <th>delete</th>
         <th>update</th>
     </tr>
-    <tr th:each="user, lp : ${AllMovie}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name_Movie}"></td>
-        <td th:text="${user.date}"></td>
+    <tr th:each="movie, lp : ${AllMovie}">
+        <td th:text="${movie.id}"></td>
+        <td th:text="${movie.name_Movie}"></td>
+        <td th:text="${movie.dates}"></td>
+        <td><a th:href="@{'/Movie/delete/' + ${movie.id}}" th:text="удалить"></a></td>
+        <td><a th:href="@{'/Movie/edit/' + ${movie.id}}" th:text="редактировать"></a></td>
     </tr>
 </table>
 </body>

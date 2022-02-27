@@ -11,12 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AdminController {
-    private UserService userService;
-
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+    private UserService userService;
 
 
     @GetMapping("/Admin")

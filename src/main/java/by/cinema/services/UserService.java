@@ -4,7 +4,6 @@ import by.cinema.entities.Role;
 import by.cinema.entities.User;
 import by.cinema.repositories.RoleRepository;
 import by.cinema.repositories.UserRepository;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class Movie {
     @Column
     private String name_Movie;
     @Column
-    private LocalDate date;
+    private String dates;
     @OneToMany(mappedBy = "movies")
     private Set<Ticket> tickets;
 }

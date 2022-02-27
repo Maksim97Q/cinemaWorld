@@ -17,12 +17,8 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    UserService userService;
-
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+    UserService userService;
 
     @Bean
     public SpringSecurityDialect springSecurityDialect() {
@@ -38,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().authorizeRequests()
                 .antMatchers("/Registration").not().fullyAuthenticated()
-                .antMatchers("/Admin/**").hasRole("ADMIN")
+                .antMatchers("/Admin/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/Movie/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/User").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/", "/resources/**").permitAll()
                 .anyRequest().authenticated()

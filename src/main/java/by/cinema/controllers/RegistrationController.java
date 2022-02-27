@@ -24,10 +24,10 @@ public class RegistrationController {
     @PostMapping("/Registration")
 //    public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
     public String addUser(@ModelAttribute("userAdd") User user, Model model) {
+        model.addAttribute("if", userService.saveUser(user));
         if (userService.saveUser(user)) {
             return "index";
         } else {
-            model.addAttribute("if", userService.saveUser(user));
             return "registration";
         }
 //        if (!userForm.getPassword().equals(userForm.getPasswordConfirm())){

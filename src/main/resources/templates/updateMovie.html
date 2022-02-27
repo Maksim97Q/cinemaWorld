@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/authorization.css" th:href="@{/css/authorization.css}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="link :: links"></div>
+<div class="loginAndRegistration">
+    <form method="post" th:action="@{'/Movie/update/' + ${movieForm.id}}" th:object="${movieForm}">
+        <input th:field="*{name_Movie}" type="text" name="name_Movie" placeholder="name_Movie" maxlength="20"><br> <br>
+        <input th:field="*{dates}" type="datetime-local" name="dates" placeholder="date"><br> <br>
+        <input type="submit" value="update">
+    </form>
+</div>
+</body>
+</html>

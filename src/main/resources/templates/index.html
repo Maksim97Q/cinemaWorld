@@ -13,5 +13,10 @@
         <h4>вы вошли как администратор</h4>
     </div>
 </div>
+<div sec:authorize="!isAuthenticated()">
+    <div th:if="${if} == true">
+        <h4>Регистрация прошла успешно</h4>
+    </div>
+</div>
 </body>
 </html>
