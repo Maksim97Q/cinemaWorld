@@ -12,9 +12,9 @@
 </div>
 <div class="loginAndRegistration">
     <form method="post" action="/login">
-        <input type="text" name="username" placeholder="username" maxlength="13"
+        <input type="text" name="username" placeholder="username" minlength="3" maxlength="15"
                required="required"><br> <br>
-        <input type="text" name="password" placeholder="password" maxlength="13"
+        <input type="text" name="password" placeholder="password" minlength="4" maxlength="15"
                required="required"><br> <br>
         <input type="submit" value="login">
     </form>

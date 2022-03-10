@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
+    private static final String LOGIN = "login";
+
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return LOGIN;
     }
 
     @PostMapping("/login")
     public String loginPage() {
-            return "login";
+        return LOGIN;
     }
 }

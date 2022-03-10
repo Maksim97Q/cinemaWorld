@@ -17,26 +17,19 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ADMIN = "ADMIN";
+    private static final String USER = "USER";
+
     @Autowired
     UserService userService;
-
-    @Bean
-    public SpringSecurityDialect springSecurityDialect() {
-        return new SpringSecurityDialect();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().authorizeRequests()
                 .antMatchers("/Registration").not().fullyAuthenticated()
-                .antMatchers("/Admin/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/Movie/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/User").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/Admin/**").hasRole(ADMIN)
+                .antMatchers("/Movie/**").hasAnyRole(USER, ADMIN)
+                .antMatchers("/User").hasAnyRole(USER, ADMIN)
                 .antMatchers("/", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -53,6 +46,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+    }
+
+    @Bean
+    public SpringSecurityDialect springSecurityDialect() {
+        return new SpringSecurityDialect();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override

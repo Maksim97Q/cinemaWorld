@@ -1,6 +1,6 @@
 input[type=text], input[type=password], select {
     width: 15%;
-    padding: 8px 5px;
+    padding: 7px 5px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 7px;
@@ -11,7 +11,7 @@ input[type=submit] {
     width: 15%;
     background-color: #21474f;
     color: white;
-    padding: 8px 1px;
+    padding: 7px 1px;
     border: none;
     border-radius: 7px;
     cursor: pointer;

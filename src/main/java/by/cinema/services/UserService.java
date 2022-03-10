@@ -4,19 +4,24 @@ import by.cinema.entities.Role;
 import by.cinema.entities.User;
 import by.cinema.repositories.RoleRepository;
 import by.cinema.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
     UserRepository userRepository;
     RoleRepository roleRepository;
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -54,12 +59,24 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    public List<User> allUsersWithFilter(String nameFilter) {
+        if (nameFilter != null) {
+            return userRepository.findAll().stream()
+                    .filter(p -> p.getUsername().contains(nameFilter))
+                    .collect(Collectors.toList());
+        } else {
+            return userRepository.findAll();
+        }
+    }
+
+    @Transactional
     public boolean saveUser(User user) {
         Optional<User> userFromDB = Optional.ofNullable(userRepository.findByUsername(user.getUsername()));
         if (userFromDB.isEmpty()) {
             user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userRepository.save(user);
+            log.info("добавление пользователя " + user);
             return true;
         }
         return false;
@@ -67,5 +84,6 @@ public class UserService implements UserDetailsService {
 
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
+        log.info("удаление пользователя по ID " + userId);
     }
 }

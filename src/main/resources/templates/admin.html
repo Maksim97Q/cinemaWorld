@@ -7,6 +7,11 @@
 <div th:insert="link :: links"></div>
 <body>
 <h2>Таблица всех пользователей</h2>
+<form action="/Admin" method="get">
+    <input type="text" th:value="${nameFilter != null} ? ${nameFilter}" placeholder="поиск по имени" name="nameFilter">
+    <input type="submit" value="поиск">
+    <input type="reset" value="сброс">
+</form>
 <table class="table" style="width: 30%">
     <tr>
         <th>id</th>
@@ -22,6 +27,7 @@
         <td><a th:href="@{'/Admin/delete/' + ${user.id}}" th:text="удалить"></a></td>
         <td><a th:href="@{'/Admin/edit/' + ${user.id}}">редактировать</a></td>
     </tr>
+
 </table>
 </body>
 </html>

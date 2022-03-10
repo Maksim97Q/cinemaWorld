@@ -1,9 +1,6 @@
 package by.cinema.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +10,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "movies")
@@ -24,6 +22,9 @@ public class Movie {
     private String name_Movie;
     @Column
     private String dates;
+    @Column
+    private Integer price;
+    @ToString.Exclude
     @OneToMany(mappedBy = "movies")
     private Set<Ticket> tickets;
 }

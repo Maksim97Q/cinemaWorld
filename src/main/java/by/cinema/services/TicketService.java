@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TicketService {
-    private TicketRepository ticketRepository;
-
     @Autowired
-    public void setTicketRepository(TicketRepository ticketRepository) {
-        this.ticketRepository = ticketRepository;
-    }
+    private TicketRepository ticketRepository;
 }
