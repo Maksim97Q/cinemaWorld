@@ -1,48 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/admin.css" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
     <title>Page Movie</title>
 </head>
 <div th:insert="link :: links"></div>
 <body>
-<h2>Таблица всех фильмов</h2>
-<div class="form" sec:authorize="hasRole('ADMIN')">
-    <form method="post" action="/Movie/add" th:object="${movieAdd}">
+<h2 class="h2_table_movie">Таблица всех фильмов</h2>
+<div class="loginAndRegistration" sec:authorize="hasRole('ADMIN')">
+    <form method="post" th:action="@{/Movie/add}" th:object="${movieAdd}">
         <input th:field="*{name_Movie}" type="text" name="name_Movie" placeholder="nameMovie" maxlength="20"
                required="required"><br><br>
         <input th:field="*{price}" type="number" name="price" placeholder="entryPrice"
                required="required"><br><br>
         <input th:field="*{dates}" type="datetime-local" name="dates" placeholder="date"
                required="required"><br><br>
-        <input type="submit" value="добавить">
+        <input type="submit" value="добавить"><br><br>
     </form>
 </div>
-<form action="/Movie" method="get">
-    <input type="text" th:value="${movieFilter != null} ? ${movieFilter}"
-           placeholder="поиск фильма" name="movieFilter">
-    <input type="submit" value="поиск">
-    <input type="reset" value="сброс">
-</form>
-<table class="table">
-    <tr>
-        <!--        <th th:text="${date}"></th>-->
-        <th>id</th>
-        <th>nameMovie</th>
-        <th>price_BYN</th>
-        <th>date</th>
-        <th sec:authorize="hasRole('ADMIN')">delete</th>
-        <th sec:authorize="hasRole('ADMIN')">update</th>
-    </tr>
-    <tr th:each="movie, lp : ${AllMovie}">
-        <td th:text="${movie.id}"></td>
-        <td th:text="${movie.name_Movie}"></td>
-        <td th:text="${movie.price}"></td>
-        <td th:text="${movie.dates}"></td>
-        <td sec:authorize="hasRole('ADMIN')"><a th:href="@{'/Movie/delete/' + ${movie.id}}" th:text="удалить"></a></td>
-        <td sec:authorize="hasRole('ADMIN')"><a th:href="@{'/Movie/edit/' + ${movie.id}}" th:text="редактировать"></a>
-        </td>
-    </tr>
-</table>
+<div class="search_form">
+    <form th:action="@{/Movie}" method="get" >
+        <input type="text" th:value="${movieFilter != null} ? ${movieFilter}"
+               placeholder="поиск фильма" name="movieFilter">
+        <input type="submit" value="поиск">
+    </form>
+</div>
+<div>
+    <table style="width: 50%" class="table_month">
+        <tr>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/find_date_movie/' + ${date_form}}" th:text="${date}"
+                       th:value="${date_form != null} ? ${date_form}"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/find_date_movie/' + ${date_form_1}}" th:text="${date_1}"
+                       th:value="${date_form != null} ? ${date_form}"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/find_date_movie/' + ${date_form_2}}" th:text="${date_2}"
+                       th:value="${date_form != null} ? ${date_form}"></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>nameMovie</th>
+            <th>price_BYN</th>
+            <th>date</th>
+            <th sec:authorize="hasRole('ADMIN')">delete</th>
+            <th sec:authorize="hasRole('ADMIN')">update</th>
+        </tr>
+        <tr th:each="movie, lp : ${AllMovie}">
+            <td th:text="${movie.id}"></td>
+            <td>
+                <div class="choose_movie">
+                    <a th:href="@{''}" th:text="${movie.name_Movie}"></a>
+                </div>
+            </td>
+            <td th:text="${movie.price}"></td>
+            <td th:text="${movie.dates}"></td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Movie/delete/' + ${movie.id}}" th:text="удалить"></a>
+                </div>
+            </td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Movie/edit/' + ${movie.id}}" th:text="редактировать"></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

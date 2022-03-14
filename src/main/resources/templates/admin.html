@@ -1,33 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/admin.css" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
     <title>Page Admin</title>
 </head>
 <div th:insert="link :: links"></div>
 <body>
-<h2>Таблица всех пользователей</h2>
-<form action="/Admin" method="get">
-    <input type="text" th:value="${nameFilter != null} ? ${nameFilter}" placeholder="поиск по имени" name="nameFilter">
+<h2 class="h2_table_user">Таблица всех пользователей</h2>
+<form action="/Admin" method="get" class="search_form">
+    <input type="text" th:value="${nameFilter != null} ? ${nameFilter}"
+           placeholder="поиск по имени" name="nameFilter">
     <input type="submit" value="поиск">
-    <input type="reset" value="сброс">
 </form>
-<table class="table" style="width: 30%">
-    <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>password</th>
-        <th>delete</th>
-        <th>update</th>
-    </tr>
-    <tr th:each="user, lp : ${allUsers}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.getUsername}"></td>
-        <td th:text="${user.password}"></td>
-        <td><a th:href="@{'/Admin/delete/' + ${user.id}}" th:text="удалить"></a></td>
-        <td><a th:href="@{'/Admin/edit/' + ${user.id}}">редактировать</a></td>
-    </tr>
+<div class="table_user">
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>password</th>
+            <th>registration_date</th>
+            <th>delete</th>
+            <th>update</th>
+        </tr>
 
-</table>
+        <tr th:each="user, lp : ${allUsers}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.getUsername}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.registration_date}"></td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Admin/delete/' + ${user.id}}" th:text="удалить"></a>
+                </div>
+            </td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Admin/edit/' + ${user.id}}">редактировать</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

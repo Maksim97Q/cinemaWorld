@@ -34,6 +34,7 @@ public class RegistrationController {
             return INDEX;
         } else {
             model.addAttribute("notSave", userService.saveUser(user));
+
             return REGISTRATION;
         }
     }

@@ -2,11 +2,13 @@ package by.cinema.services;
 
 import by.cinema.entities.Movie;
 import by.cinema.repositories.MovieRepository;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,6 +31,16 @@ public class MovieService {
         if (movieFilter != null) {
             return movieRepository.findAll().stream()
                     .filter(p -> p.getName_Movie().contains(movieFilter))
+                    .collect(Collectors.toList());
+        } else {
+            return movieRepository.findAll();
+        }
+    }
+
+    public List<Movie> movieByDate(String date) {
+        if (date != null) {
+            return movieRepository.findAll().stream()
+                    .filter(p -> p.getDates().contains(date))
                     .collect(Collectors.toList());
         } else {
             return movieRepository.findAll();

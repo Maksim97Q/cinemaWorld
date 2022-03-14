@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/authorization.css" th:href="@{/css/authorization.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div th:insert="link :: links"></div>
-<div th:if="${notSave} == false">
-    <h4>Такой логин уже существует, введите другой</h4>
-</div>
-<div class="loginAndRegistration">
-    <form action="/Registration" method="post" th:object="${userAdd}">
-        <input th:field="*{username}" type="text" placeholder="username" minlength="3" maxlength="15"
-               required="required"><br> <br>
-        <input th:field="*{password}" type="text" placeholder="password" minlength="4" maxlength="15"
-               required="required"><br> <br>
-        <input type="submit" value="registration">
-    </form>
+<div class="login_reg_center">
+    <div class="loginAndRegistration">
+        <form action="/Registration" method="post" th:object="${userAdd}">
+            <input th:field="*{username}" type="text" placeholder="username" minlength="3" maxlength="15"
+                   required="required"><br><br>
+            <input th:field="*{password}" type="text" placeholder="password" minlength="4" maxlength="15"
+                   required="required"><br><br>
+            <input type="submit" value="registration"><br>
+            <div th:if="${notSave} == false">
+                <h4>Такой логин уже существует, введите другой</h4>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    /*background: url(images/fon.jpg) no-repeat center center fixed;*/
+    /*background-size: cover;*/
+    background-color: #eaeaea;
+}
+
+.link_right {
+    float: right;
+}
+
+.link_center {
+    margin: 0 0 0 41%;
+}
+
+.links {
+    overflow: hidden;
+    background-color: #21474f;
+}
+
+.links a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 13px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.links a:hover {
+    background-color: #8eafb6;
+    color: black;
+}
+
+.loginAndRegistration input[type=text], input[type=password],
+input[type=number], input[type=datetime-local] select {
+    width: 220px;
+    padding: 7px 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.loginAndRegistration input[type=submit] {
+    background-color: #21474f;
+    width: 220px;
+    color: white;
+    padding: 7px 1px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.loginAndRegistration input[type=submit]:hover {
+    background-color: #3c7d8a;
+    color: white;
+}
+
+.loginAndRegistration {
+    width: 270px;
+    margin: 0 10px 10px 10px;
+    float: left;
+}
+
+.login_reg_center {
+    margin: 210px 42%;
+}
+
+.deleteAndUpdate a {
+    color: #000000;
+    background-color: #c5d0d3;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.deleteAndUpdate a:hover {
+    background-color: #bdbebe;
+    color: #f52c2c;
+}
+
+.date_month a {
+    color: #000000;
+    background-color: #dddfe0;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 12px 65px 12px 65px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.date_month a:hover {
+    background-color: #bdbebe;
+}
+
+.table_month {
+    border: 1px solid #ccc;
+    margin: 10px 10px 10px 20%;
+}
+
+.choose_movie a {
+    color: #000000;
+    background-color: #d5d6d9;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.choose_movie a:hover {
+    background-color: #698c8c;
+    color: #000000;
+}
+
+.h2_table_movie {
+    margin: 10px 10px 10px 570px;
+}
+
+.h2_table_user {
+    margin: 10px 10px 10px 490px;
+}
+
+.search_form {
+    box-sizing: border-box;
+    margin: 10px 10px 10px 27%;
+}
+
+.search_form input[type=text] {
+    padding: 5px 300px 5px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.search_form input[type=submit] {
+    width: 92px;
+    background-color: #969696;
+    color: white;
+    padding: 4px 1px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search_form input[type=submit]:hover {
+    background-color: #39727a;
+    color: #f2f2f2;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;
+    border: 1px solid #ddd;
+    margin: 0 10px 10px 20%;
+    box-sizing: border-box;
+}
+
+.table_user {
+    margin-right: 31%;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}

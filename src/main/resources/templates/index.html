@@ -3,14 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/link.css" th:href="@{/css/link.css}">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
 <div th:insert="link :: links"></div>
 <div sec:authorize="isAuthenticated()">
-    <h4>Добро пожаловать!</h4>
+    <h2 class="h2_table_movie">Добро пожаловать!</h2>
     <div sec:authorize="hasRole('ADMIN')">
-        <h4>вы вошли как администратор</h4>
+        <h2 class="h2_table_movie">вы вошли как администратор</h2>
     </div>
 </div>
 </body>

@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TicketController {
-    @GetMapping("/Ticket")
+    @GetMapping("/Schedule")
     public String getTicket() {
-        return "ticket";
+        return "schedule";
     }
 
-    @PostMapping("/Ticket")
+    @PostMapping("/Schedule")
     public String postTicket() {
-        return "ticket";
+        return "schedule";
     }
 }

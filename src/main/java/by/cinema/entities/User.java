@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,8 @@ public class User implements UserDetails {
     private String username;
     @Column
     private String password;
+    @Column
+    private Date registration_date;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 

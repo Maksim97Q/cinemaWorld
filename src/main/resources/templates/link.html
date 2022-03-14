@@ -3,21 +3,25 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/link.css" th:href="@{/css/link.css}">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="links">
-    <div sec:authorize="!isAuthenticated()">
+    <div class="link_right" sec:authorize="!isAuthenticated()">
         <a href="/Registration">Registration</a>
         <a href="/login">Login</a>
     </div>
-    <div sec:authorize="isAuthenticated()">
+    <div class="link_right" sec:authorize="isAuthenticated()">
         <a href="/logout">Logout</a>
     </div>
-    <a href="/Admin">Admin</a>
-    <a href="/User">User</a>
-    <a href="/Movie">Movie</a>
+    <div class="link_center">
+        <a href="/Admin">Admin</a>
+        <a href="/User">User</a>
+        <a href="/Movie">Movie</a>
+        <a href="/Schedule">Schedule</a>
+    </div>
 </div>
-<!--<img src="/images/photo.jpg" style="filter: blur(5px)" alt="fon">-->
 </body>
 </html>
+<!--<img src="../images/fon.jpg" style="filter: blur(5); width: 1600px;height: 713px" alt="fon">-->
