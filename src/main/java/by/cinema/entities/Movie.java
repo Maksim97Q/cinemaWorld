@@ -24,6 +24,8 @@ public class Movie {
     private String dates;
     @Column
     private Integer price;
+    @Column
+    private Integer seats;
     @ToString.Exclude
     @OneToMany(mappedBy = "movies")
     private Set<Ticket> tickets;

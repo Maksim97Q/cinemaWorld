@@ -15,11 +15,12 @@
                required="required"><br><br>
         <input th:field="*{dates}" type="datetime-local" name="dates" placeholder="date"
                required="required"><br><br>
-        <input type="submit" value="добавить"><br><br>
+        <input type="submit" value="добавить"><br>
     </form>
+    <h4 th:text="'всего фильмов: ' + ${AllMovie.size()}" style="margin-left: 30px"></h4>
 </div>
 <div class="search_form">
-    <form th:action="@{/Movie}" method="get" >
+    <form th:action="@{/Movie}" method="get">
         <input type="text" th:value="${movieFilter != null} ? ${movieFilter}"
                placeholder="поиск фильма" name="movieFilter">
         <input type="submit" value="поиск">
@@ -63,7 +64,7 @@
             <td th:text="${movie.id}"></td>
             <td>
                 <div class="choose_movie">
-                    <a th:href="@{''}" th:text="${movie.name_Movie}"></a>
+                    <a th:href="@{'/Movie/show/' + ${movie.id}}" th:text="${movie.name_Movie}"></a>
                 </div>
             </td>
             <td th:text="${movie.price}"></td>

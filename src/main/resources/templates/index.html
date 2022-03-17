@@ -4,14 +4,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
+    <title></title>
 </head>
 <body>
 <div th:insert="link :: links"></div>
 <div sec:authorize="isAuthenticated()">
-    <h2 class="h2_table_movie">Добро пожаловать!</h2>
+    <h2 class="h2_table_movie" th:text="${user_log} + ', Добро пожаловать!'"></h2>
     <div sec:authorize="hasRole('ADMIN')">
         <h2 class="h2_table_movie">вы вошли как администратор</h2>
     </div>
+</div>
+<div th:if="${save_user} == true">
+    <h2 class="h2_table_movie">Вы успешно зарегестрировались!</h2>
 </div>
 </body>
 </html>

@@ -48,6 +48,7 @@ public class MovieService {
     }
 
     public void saveMovie(Movie movie) {
+        movie.setSeats(40);
         movieRepository.save(movie);
         log.info("добавление фильма " + movie);
     }
@@ -57,8 +58,8 @@ public class MovieService {
         log.info("фильм был удалён по ID " + id);
     }
 
-    public Movie findUserById(Long movieId) {
-        Optional<Movie> userFromDb = movieRepository.findById(movieId);
-        return userFromDb.orElse(new Movie());
+    public Movie findMovieById(Long movieId) {
+        Optional<Movie> findMovie = movieRepository.findById(movieId);
+        return findMovie.orElse(new Movie());
     }
 }

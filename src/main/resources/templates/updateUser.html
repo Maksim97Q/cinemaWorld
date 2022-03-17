@@ -7,14 +7,16 @@
 </head>
 <body>
 <div th:insert="link :: links"></div>
-<div class="loginAndRegistration">
-    <form method="post" action="#" th:action="@{'/Admin/update/' + ${userForm.id}}" th:object="${userForm}">
-        <input th:field="*{username}" type="text" name="username" placeholder="username"
-               minlength="3" maxlength="15" required="required"><br> <br>
-        <input th:field="*{password}" type="text" name="password" placeholder="password"
-               minlength="4" maxlength="15" required="required"><br> <br>
-        <input type="submit" value="update">
-    </form>
+<div class="login_reg_center">
+    <div class="loginAndRegistration">
+        <form method="post" action="#" th:action="@{'/Admin/update/' + ${userForm.id}}" th:object="${userForm}">
+            <input th:field="*{username}" type="text" name="username" placeholder="username"
+                   minlength="3" maxlength="15" required="required"><br> <br>
+            <input th:field="*{password}" type="text" name="password" placeholder="password"
+                   minlength="4" maxlength="15" required="required"><br> <br>
+            <input type="submit" value="update">
+        </form>
+    </div>
 </div>
 </body>
 </html>

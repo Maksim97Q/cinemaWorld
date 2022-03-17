@@ -1,5 +1,6 @@
 package by.cinema.controllers;
 
+import by.cinema.entities.Ticket;
 import by.cinema.entities.User;
 import by.cinema.services.UserService;
 import org.slf4j.Logger;
@@ -30,11 +31,12 @@ public class RegistrationController {
 
     @PostMapping("/Registration")
     public String addUser(@ModelAttribute("userAdd") User user, Model model) {
-        if (userService.saveUser(user)) {
+        boolean user_boolean = userService.saveUser(user);
+        if (user_boolean) {
+            model.addAttribute("save_user", true);
             return INDEX;
         } else {
             model.addAttribute("notSave", userService.saveUser(user));
-
             return REGISTRATION;
         }
     }

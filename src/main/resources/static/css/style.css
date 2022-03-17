@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    /*background: url(images/fon.jpg) no-repeat center center fixed;*/
+    /*background: url('') no-repeat center center fixed;*/
     /*background-size: cover;*/
     background-color: #eaeaea;
 }
@@ -160,6 +160,12 @@ input[type=number], input[type=datetime-local] select {
 
 .table_user {
     margin-right: 31%;
+}
+
+.hr hr {
+    background-color: #969696;
+    margin: 0 30% 20px 30%;
+    height: 4px;
 }
 
 th, td {

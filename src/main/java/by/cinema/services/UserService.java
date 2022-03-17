@@ -1,6 +1,7 @@
 package by.cinema.services;
 
 import by.cinema.entities.Role;
+import by.cinema.entities.Ticket;
 import by.cinema.entities.User;
 import by.cinema.repositories.RoleRepository;
 import by.cinema.repositories.UserRepository;
@@ -26,6 +27,11 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
     RoleRepository roleRepository;
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    User user_log = new User();
+
+    public User getUser_log() {
+        return user_log;
+    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -42,9 +48,14 @@ public class UserService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    public User findByUsername(String name) {
+        return userRepository.findByUsername(name);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
+        user_log = user;
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
 <div th:insert="link :: links"></div>
 <body>
-<h4 th:text="${name} + ' вы вошли как обычный пользователь'"></h4>
+<h2 class="h2_table_movie" th:text="${user_log} + ', вы вошли как обычный пользователь'"></h2>
 </body>
 </html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>schedule</title>
+</head>
+<div th:insert="link :: links"></div>
+<body>
+<div>
+    <table class="table" style="margin-left: 25%; margin-top: 1%">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price_BYN</th>
+            <th>date</th>
+        </tr>
+        <tr th:object="${movie_id}">
+            <td th:text="${movie_id.id}"></td>
+            <td th:text="${movie_id.name_Movie}"></td>
+            <td th:text="${movie_id.price}"></td>
+            <td th:text="${movie_id.dates}"></td>
+        </tr>
+    </table>
+</div>
+<!--<h2 class="h2_table_movie" th:if="${buy_ticket} == true">-->
+<!--    вы успешно купили билет-->
+<!--</h2>-->
+<!--<h2 class="h2_table_movie" th:if="${buy_ticket} != true">-->
+<!--    вы не можете купить билет-->
+<!--</h2>-->
+<h3 style="margin: 50px 0 5px 47%">Экран</h3>
+<div>
+    <hr style="height: 4px; margin: 0 30% 20px 30%; background-color: #969696">
+</div>
+<div>
+    <table class="table" style="margin-left: 18%">
+        <tr>
+            <th>ряд_1</th>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 1}" th:text="1"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 2}" th:text="2"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 3}" th:text="3"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 4}" th:text="4"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 5}" th:text="5"></a>
+                </div>
+            </td>
+            <th>ряд_1</th>
+        </tr>
+        <tr>
+            <th>ряд_2</th>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 6}" th:text="6"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 7}" th:text="7"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 8}" th:text="8"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 9}" th:text="9"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 10}" th:text="10"></a>
+                </div>
+            </td>
+            <th>ряд_2</th>
+        </tr>
+        <tr>
+            <th>ряд_3</th>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 11}" th:text="11"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 12}" th:text="12"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 13}" th:text="13"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 14}" th:text="13"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 15}" th:text="15"></a>
+                </div>
+            </td>
+            <th>ряд_3</th>
+        </tr>
+        <tr>
+            <th>ряд_4</th>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 16}" th:text="16"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 17}" th:text="17"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 18}" th:text="18"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 19}" th:text="19"></a>
+                </div>
+            </td>
+            <td>
+                <div class="date_month">
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 20}" th:text="20"></a>
+                </div>
+            </td>
+            <th>ряд_4</th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
