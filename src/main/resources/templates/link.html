@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:height="http://www.w3.org/1999/xhtml" lang="en" th:fragment="links"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="links">
@@ -16,9 +19,17 @@
         <a href="/logout">Logout</a>
     </div>
     <div class="link_center">
-        <a href="/Admin">Admin</a>
-        <a href="/User">User</a>
+        <a href="/Profile">Profile</a>
         <a href="/Movie">Movie</a>
+        <div sec:authorize="hasRole('ADMIN')" class="dropdown">
+            <button class="dropout">Admin
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/Admin">See users</a>
+                <a href="/User_Tickets">User_Tickets</a>
+            </div>
+        </div>
     </div>
 </div>
 </body>

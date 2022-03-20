@@ -16,7 +16,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
@@ -31,9 +30,8 @@ public class User implements UserDetails {
     private Date registration_date;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Ticket> ticket;
 
     public User(String username, String password) {
         this.username = username;

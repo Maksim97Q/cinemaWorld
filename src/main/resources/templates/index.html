@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html xmlns:th="http://www.thymeleaf.org" lang="en"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,13 +10,18 @@
 <body>
 <div th:insert="link :: links"></div>
 <div sec:authorize="isAuthenticated()">
-    <h2 class="h2_table_movie" th:text="${user_log} + ', Добро пожаловать!'"></h2>
+    <h2 style="margin: 10px 10px 10px 625px" class="h2_table_movie"
+        th:text="${user_log} + ', Добро пожаловать!'">
+    </h2>
     <div sec:authorize="hasRole('ADMIN')">
-        <h2 class="h2_table_movie">вы вошли как администратор</h2>
+        <h2 style="margin: 10px 10px 10px 600px" class="h2_table_movie">вы вошли как администратор</h2>
+    </div>
+    <div sec:authorize="hasRole('USER')">
+        <h2 style="margin: 10px 10px 10px 550px" class="h2_table_movie">вы вошли как обычный пользователь</h2>
     </div>
 </div>
 <div th:if="${save_user} == true">
-    <h2 class="h2_table_movie">Вы успешно зарегестрировались!</h2>
+    <h2 style="margin: 10px 10px 10px 600px" class="h2_table_movie">Вы успешно зарегестрировались!</h2>
 </div>
 </body>
 </html>

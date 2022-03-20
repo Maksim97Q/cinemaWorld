@@ -16,10 +16,10 @@ public class AdminController {
     private static final String ADMIN = "admin";
     private static final String REDIRECT_ADMIN = "redirect:/Admin";
     private static final String UPDATE_USER = "updateUser";
+    private static final String USER_TICKET = "user_tickets";
 
     @Autowired
     private UserService userService;
-
 
     @GetMapping("/Admin")
     public String userList(Model model, @RequestParam(value = "nameFilter", required = false) String nameFilter) {
@@ -48,5 +48,10 @@ public class AdminController {
     public String updateStudent(@PathVariable("id") long id, User user, Model model) {
         userService.saveUser(user);
         return REDIRECT_ADMIN;
+    }
+
+    @GetMapping("/User_Tickets")
+    public String showUserTickets(Model model) {
+        return USER_TICKET;
     }
 }

@@ -1,32 +1,48 @@
 package by.cinema.controllers;
 
+import by.cinema.entities.Ticket;
 import by.cinema.entities.User;
+import by.cinema.services.TicketService;
 import by.cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class UserController {
-    private static final String USER = "user";
+    private static final String PROFILE = "profile";
+    private static final String REDIRECT_PROFILE_TICKETS = "redirect:/Profile/tickets";
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
-    @GetMapping("/User")
-    public String userShow(Model model) {
+    @Autowired
+    private TicketService ticketService;
+
+    @GetMapping("/Profile/tickets")
+    public String showUserTickets(Model model) {
         User user_log = userService.getUser_log();
-        model.addAttribute("user_log", user_log.getUsername());
-        return USER;
+        List<Ticket> ticketByUserId = ticketService.findByAllTicket(user_log.getId());
+        model.addAttribute("user_newTicket", ticketByUserId);
+        return PROFILE;
     }
 
-    @PostMapping("/User")
+    @GetMapping("/Profile")
+    public String showUser() {
+        User user_log = userService.getUser_log();
+        if (user_log.getTicket() != null) {
+            return REDIRECT_PROFILE_TICKETS;
+        } else {
+            return PROFILE;
+        }
+    }
+
+    @PostMapping("/Profile")
     public String userSend() {
-        return USER;
+        return PROFILE;
     }
 }

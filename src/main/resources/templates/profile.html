@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div th:insert="link :: links"></div>
+<body>
+<h2 style="margin: 10px 10px 10px 650px" class="h2_table_movie">Ваш список билетов</h2>
+<table class="table" style="margin-left: 25%">
+    <tr>
+        <th>id_ticket</th>
+        <th>nameMovie</th>
+        <th>price_BYN</th>
+        <th>date</th>
+        <th>place_number</th>
+    </tr>
+    <tr th:each="user, lp : ${user_newTicket}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.movies.name_Movie}"></td>
+        <td th:text="${user.movies.price}"></td>
+        <td th:text="${user.movies.dates}"></td>
+        <td th:text="${user.placeNumber}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tickets")
@@ -19,11 +18,13 @@ public class Ticket {
     private Integer placeNumber;
     @ManyToOne
     private Movie movies;
-    @OneToOne(mappedBy = "ticket")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    public Ticket(Integer placeNumber, Movie movie) {
+    public Ticket(Integer placeNumber, Movie movie, User user) {
         this.placeNumber = placeNumber;
         this.movies = movie;
+        this.user = user;
     }
 }

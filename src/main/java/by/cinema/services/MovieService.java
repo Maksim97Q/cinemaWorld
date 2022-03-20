@@ -2,13 +2,11 @@ package by.cinema.services;
 
 import by.cinema.entities.Movie;
 import by.cinema.repositories.MovieRepository;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,12 +14,9 @@ import java.util.stream.Collectors;
 @Service
 public class MovieService {
     private static final Logger log = LoggerFactory.getLogger(MovieService.class);
-    private MovieRepository movieRepository;
 
     @Autowired
-    public void setMovieRepository(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
+    private MovieRepository movieRepository;
 
     public List<Movie> AllMovies() {
         return movieRepository.findAll();
@@ -48,7 +43,7 @@ public class MovieService {
     }
 
     public void saveMovie(Movie movie) {
-        movie.setSeats(40);
+        movie.setFree_places(20);
         movieRepository.save(movie);
         log.info("добавление фильма " + movie);
     }

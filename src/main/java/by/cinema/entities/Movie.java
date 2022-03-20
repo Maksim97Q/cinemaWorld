@@ -10,7 +10,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "movies")
@@ -25,8 +24,10 @@ public class Movie {
     @Column
     private Integer price;
     @Column
-    private Integer seats;
+    private Integer free_places;
+    @OneToMany(mappedBy = "movies", cascade = CascadeType.ALL)
+    private Set<Seat> seats;
+    @OneToMany(mappedBy = "movies", cascade = CascadeType.ALL)
     @ToString.Exclude
-    @OneToMany(mappedBy = "movies")
     private Set<Ticket> tickets;
 }

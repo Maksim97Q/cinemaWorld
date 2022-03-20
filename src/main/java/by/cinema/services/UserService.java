@@ -24,29 +24,21 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
-    UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     RoleRepository roleRepository;
-    BCryptPasswordEncoder bCryptPasswordEncoder;
     User user_log = new User();
 
     public User getUser_log() {
         return user_log;
     }
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setRoleRepository(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-
-    @Autowired
-    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
 
     public User findByUsername(String name) {
         return userRepository.findByUsername(name);

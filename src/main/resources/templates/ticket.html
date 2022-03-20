@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
@@ -23,12 +24,6 @@
         </tr>
     </table>
 </div>
-<!--<h2 class="h2_table_movie" th:if="${buy_ticket} == true">-->
-<!--    вы успешно купили билет-->
-<!--</h2>-->
-<!--<h2 class="h2_table_movie" th:if="${buy_ticket} != true">-->
-<!--    вы не можете купить билет-->
-<!--</h2>-->
 <h3 style="margin: 50px 0 5px 47%">Экран</h3>
 <div>
     <hr style="height: 4px; margin: 0 30% 20px 30%; background-color: #969696">
@@ -112,7 +107,7 @@
             </td>
             <td>
                 <div class="date_month">
-                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 14}" th:text="13"></a>
+                    <a th:href="@{'/Movie/show/' + ${movie_id.id} + '/buy/' + 14}" th:text="14"></a>
                 </div>
             </td>
             <td>
@@ -152,6 +147,12 @@
             <th>ряд_4</th>
         </tr>
     </table>
+    <h2 style="margin: 10px 10px 10px 600px" th:if="${find_seat} == false">
+        вы успешно купили билет
+    </h2>
+<!--    <h2 style="margin: 10px 10px 10px 600px" th:if="${find_seat} == true>">-->
+<!--        место занято-->
+<!--    </h2>-->
 </div>
 </body>
 </html>

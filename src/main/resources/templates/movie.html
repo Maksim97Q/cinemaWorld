@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
@@ -6,7 +7,7 @@
 </head>
 <div th:insert="link :: links"></div>
 <body>
-<h2 class="h2_table_movie">Таблица всех фильмов</h2>
+<h2 style="margin: 10px 10px 10px 620px">Таблица всех фильмов</h2>
 <div class="loginAndRegistration" sec:authorize="hasRole('ADMIN')">
     <form method="post" th:action="@{/Movie/add}" th:object="${movieAdd}">
         <input th:field="*{name_Movie}" type="text" name="name_Movie" placeholder="nameMovie" maxlength="20"
@@ -19,7 +20,7 @@
     </form>
     <h4 th:text="'всего фильмов: ' + ${AllMovie.size()}" style="margin-left: 30px"></h4>
 </div>
-<div class="search_form">
+<div class="search_form" style="margin-left: 32%">
     <form th:action="@{/Movie}" method="get">
         <input type="text" th:value="${movieFilter != null} ? ${movieFilter}"
                placeholder="поиск фильма" name="movieFilter">
@@ -27,7 +28,7 @@
     </form>
 </div>
 <div>
-    <table style="width: 50%" class="table_month">
+    <table style="width: 50%; margin-left: 25%" class="table_month">
         <tr>
             <td>
                 <div class="date_month">
@@ -51,7 +52,7 @@
     </table>
 </div>
 <div>
-    <table class="table">
+    <table class="table" style="margin-left: 25%">
         <tr>
             <th>id</th>
             <th>nameMovie</th>
