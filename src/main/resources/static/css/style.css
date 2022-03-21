@@ -1,8 +1,6 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    /*background: url('') no-repeat center center fixed;*/
-    /*background-size: cover;*/
     background-color: #eaeaea;
 }
 
@@ -95,6 +93,10 @@ input[type=number], input[type=datetime-local] select {
     background-color: #bdbebe;
 }
 
+.date_month_2 a:visited {
+    color: red;
+}
+
 .table_month {
     border: 1px solid #ccc;
     margin: 10px 10px 10px 20%;
@@ -169,7 +171,7 @@ input[type=number], input[type=datetime-local] select {
 }
 
 th, td {
-    text-align: left;
+    text-align: center;
     padding: 16px;
 }
 

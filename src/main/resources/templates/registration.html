@@ -12,7 +12,7 @@
         <form action="/Registration" method="post" th:object="${userAdd}">
             <input th:field="*{username}" type="text" placeholder="username" minlength="3" maxlength="15"
                    required="required"><br><br>
-            <input th:field="*{password}" type="text" placeholder="password" minlength="4" maxlength="15"
+            <input th:field="*{password}" type="password" placeholder="password" minlength="4" maxlength="15"
                    required="required"><br><br>
             <input type="submit" value="registration"><br>
             <div th:if="${notSave} == false">

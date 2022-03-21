@@ -14,19 +14,27 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    private static final String PROFILE = "profile";
     private static final String REDIRECT_PROFILE_TICKETS = "redirect:/Profile/tickets";
+    private static final String REDIRECT_PROFILE = "redirect:/Profile";
+    private static final String PROFILE = "profile";
 
-    @Autowired
     private UserService userService;
+    private TicketService ticketService;
 
     @Autowired
-    private TicketService ticketService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setTicketService(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
 
     @GetMapping("/Profile/tickets")
     public String showUserTickets(Model model) {
         User user_log = userService.getUser_log();
-        List<Ticket> ticketByUserId = ticketService.findByAllTicket(user_log.getId());
+        List<Ticket> ticketByUserId = ticketService.findByAllTicketUser(user_log.getId());
         model.addAttribute("user_newTicket", ticketByUserId);
         return PROFILE;
     }
@@ -45,4 +53,10 @@ public class UserController {
     public String userSend() {
         return PROFILE;
     }
+
+//    @GetMapping("/Profile/delete/ticket/{id}")
+//    public String deleteTicket(@PathVariable(value = "id") Long id, Model model) {
+//        ticketService.deleteTicketById(id);
+//        return REDIRECT_PROFILE;
+//    }
 }

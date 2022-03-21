@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
     <meta charset="UTF-8">
@@ -28,8 +28,8 @@
 <div>
     <hr style="height: 4px; margin: 0 30% 20px 30%; background-color: #969696">
 </div>
-<div>
-    <table class="table" style="margin-left: 18%">
+<div class="date_month_2">
+    <table class="table" style="margin-left: 17%">
         <tr>
             <th>ряд_1</th>
             <td>
@@ -150,9 +150,9 @@
     <h2 style="margin: 10px 10px 10px 600px" th:if="${find_seat} == false">
         вы успешно купили билет
     </h2>
-<!--    <h2 style="margin: 10px 10px 10px 600px" th:if="${find_seat} == true>">-->
-<!--        место занято-->
-<!--    </h2>-->
+    <!--    <h2 style="margin: 10px 10px 10px 600px" th:if="${find_seat} == true>">-->
+    <!--        место занято-->
+    <!--    </h2>-->
 </div>
 </body>
 </html>

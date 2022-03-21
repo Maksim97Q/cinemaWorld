@@ -1,6 +1,9 @@
 package by.cinema.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -16,9 +19,9 @@ public class Ticket {
     private Long id;
     @Column
     private Integer placeNumber;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Movie movies;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

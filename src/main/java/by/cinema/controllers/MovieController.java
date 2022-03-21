@@ -23,11 +23,18 @@ public class MovieController {
     private static final String TICKET = "ticket";
     private static final String MOVIE = "movie";
 
-    @Autowired
     private MovieService movieService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public void setMovieService(MovieService movieService) {
+        this.movieService = movieService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = {"/Movie/find_date_movie/{date_Search}", "/Movie"})
     public String getMovie(@PathVariable(value = "date_Search", required = false) String date_Search,

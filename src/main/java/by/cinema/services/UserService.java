@@ -1,9 +1,7 @@
 package by.cinema.services;
 
 import by.cinema.entities.Role;
-import by.cinema.entities.Ticket;
 import by.cinema.entities.User;
-import by.cinema.repositories.RoleRepository;
 import by.cinema.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +23,19 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    RoleRepository roleRepository;
+    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     User user_log = new User();
 
     public User getUser_log() {
@@ -57,10 +60,6 @@ public class UserService implements UserDetailsService {
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         return userFromDb.orElse(new User());
-    }
-
-    public List<User> allUsers() {
-        return userRepository.findAll();
     }
 
     public List<User> allUsersWithFilter(String nameFilter) {

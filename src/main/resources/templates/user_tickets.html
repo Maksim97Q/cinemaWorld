@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User_Tickets</title>
 </head>
+<div th:insert="link :: links"></div>
 <body>
-
+<h2 style="margin: 10px 10px 10px 520px" class="h2_table_movie">Список купленных билетов у пользователей</h2>
+<table class="table" style="margin-left: 25%">
+    <tr>
+        <th>id_ticket</th>
+        <th>name_user</th>
+        <th>name_movie</th>
+        <th>date</th>
+        <th>price_BYN</th>
+        <th>place_number</th>
+    </tr>
+    <tr th:each="ticket, lp : ${users_with_tickets}">
+        <td th:text="${ticket.id}"></td>
+        <td th:text="${ticket.user.username}"></td>
+        <td th:text="${ticket.movies.name_Movie}"></td>
+        <td th:text="${ticket.movies.dates}"></td>
+        <td th:text="${ticket.movies.price}"></td>
+        <td th:text="${ticket.placeNumber}"></td>
+    </tr>
+</table>
 </body>
 </html>

@@ -15,8 +15,12 @@ import java.util.stream.Collectors;
 public class MovieService {
     private static final Logger log = LoggerFactory.getLogger(MovieService.class);
 
-    @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    public void setMovieRepository(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     public List<Movie> AllMovies() {
         return movieRepository.findAll();
