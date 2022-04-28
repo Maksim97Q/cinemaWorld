@@ -1,6 +1,11 @@
 package by.cinema.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,9 +28,7 @@ public class Movie {
     private Integer price;
     @Column
     private Integer free_places;
-    @OneToMany(mappedBy = "movies", cascade = CascadeType.ALL)
-    private Set<Seat> seats;
-    @OneToMany(mappedBy = "movies", cascade = CascadeType.ALL)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "movies", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
     private Set<Ticket> tickets;
 }

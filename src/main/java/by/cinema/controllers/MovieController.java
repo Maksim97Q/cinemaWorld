@@ -1,9 +1,10 @@
 package by.cinema.controllers;
 
+import by.cinema.entities.BankCard;
 import by.cinema.entities.Movie;
-import by.cinema.entities.Seat;
 import by.cinema.entities.Ticket;
 import by.cinema.entities.User;
+import by.cinema.services.BankCardService;
 import by.cinema.services.MovieService;
 import by.cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,10 @@ public class MovieController {
     private static final String MOVIE = "movie";
 
     private MovieService movieService;
-    private UserService userService;
 
     @Autowired
     public void setMovieService(MovieService movieService) {
         this.movieService = movieService;
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     @GetMapping(value = {"/Movie/find_date_movie/{date_Search}", "/Movie"})
@@ -89,19 +84,12 @@ public class MovieController {
         return TICKET;
     }
 
-    @GetMapping("/Movie/show/{id}/buy/{seat}")
-    public String buyTicketAtMovie(@PathVariable(value = "seat") Integer seat,
+    @GetMapping("/Movie/show/{id}/buy/{place}")
+    public String buyTicketAtMovie(@PathVariable(value = "place") Integer place_number,
                                    @PathVariable(value = "id") Long id, Model model) {
-        User byUsername = userService.findByUsername(userService.getUser_log().getUsername());
-        Movie movieById = movieService.findMovieById(id);
-        boolean find_seat = movieById.getSeats().stream().anyMatch(seat1 -> seat1.getPlace().equals(seat));
-        if (!find_seat) {
-            movieById.getSeats().add(new Seat(seat, movieById));
-            model.addAttribute("find_seat", false);
-            model.addAttribute("movie_id", movieService.findMovieById(id));
-            byUsername.setTicket(Collections.singleton(new Ticket(seat, movieById, byUsername)));
-            movieById.setFree_places(movieById.getFree_places() - 1);
-            userService.saveUser(byUsername);
+        model.addAttribute("find_seat", false);
+        model.addAttribute("movie_id", movieService.findMovieById(id));
+        if (movieService.buyTicketByMovie(id, place_number)) {
             return TICKET;
         } else {
             return REDIRECT_MOVIE_SHOW + id;

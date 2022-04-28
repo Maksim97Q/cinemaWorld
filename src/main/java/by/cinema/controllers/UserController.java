@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -54,9 +55,9 @@ public class UserController {
         return PROFILE;
     }
 
-//    @GetMapping("/Profile/delete/ticket/{id}")
-//    public String deleteTicket(@PathVariable(value = "id") Long id, Model model) {
-//        ticketService.deleteTicketById(id);
-//        return REDIRECT_PROFILE;
-//    }
+    @GetMapping("/Profile/ticket/delete/{id}")
+    public String deleteTicket(@PathVariable(value = "id") Long id, Model model) {
+        ticketService.deleteTicketById(id);
+        return REDIRECT_PROFILE;
+    }
 }

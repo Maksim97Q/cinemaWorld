@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
+    <title>Card</title>
+</head>
+<div th:insert="link :: links"></div>
+<body>
+
+<h2 style="margin: 10px 10px 10px 680px" class="h2_table_movie">Добавление карты</h2>
+
+<div class="login_reg_center">
+    <div class="loginAndRegistration" style="margin: -120px 0px 0px 10px">
+        <form method="post" th:action="@{/Card/add}" th:object="${cardAdd}">
+            <input th:field="*{cardNumber}" type="number" name="card"
+                   placeholder="введите номер карты" minlength="7" maxlength="10"><br><br>
+            <input type="submit" value="отправить"><br><br>
+        </form>
+    </div>
+</div>
+<div>
+    <table class="table" style="margin-left: 25%">
+        <tr>
+            <th>id_card</th>
+            <th>numberCard</th>
+            <th>balance</th>
+            <th>status</th>
+            <th>deleteCard</th>
+        </tr>
+        <tr th:each="card : ${card_new}">
+            <td th:text="${card.id}"></td>
+            <td th:text="${card.cardNumber}"></td>
+            <td th:text="${card.balance}"></td>
+            <td th:text="${card.status}"></td>
+            <td>
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Card/delete/' + ${card.id}}" th:text="${'удалить карту'}"></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

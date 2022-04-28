@@ -19,6 +19,7 @@
         <a href="/logout">Logout</a>
     </div>
     <div class="link_center">
+        <a href="/Card">Card</a>
         <a href="/Profile">Profile</a>
         <a href="/Movie">Movie</a>
         <div sec:authorize="hasRole('ADMIN')" class="dropdown">
@@ -27,7 +28,8 @@
             </button>
             <div class="dropdown-content">
                 <a href="/Admin">See users</a>
-                <a href="/User_Tickets">Users_Tickets</a>
+                <a href="/User_Tickets">Users_tickets</a>
+                <a href="/Card/users_card">Users_cards</a>
             </div>
         </div>
     </div>

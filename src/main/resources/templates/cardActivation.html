@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
+    <title>Card</title>
+</head>
+<div th:insert="link :: links"></div>
+<body>
+
+<h2 style="margin: 10px 10px 10px 680px" class="h2_table_movie">активация карты</h2>
+
+<div>
+    <table class="table" style="margin-left: 25%">
+        <tr>
+            <th>id_card</th>
+            <th>card_owner</th>
+            <th>numberCard</th>
+            <th>balance</th>
+            <th>status</th>
+            <th>activation</th>
+        </tr>
+        <tr th:each="card : ${activationCard}">
+            <td th:text="${card.id}"></td>
+            <td th:text="${card.user.username}"></td>
+            <td th:text="${card.cardNumber}"></td>
+            <td th:text="${card.balance}"></td>
+            <td th:text="${card.status}"></td>
+            <td>
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Card/activation/' + ${card.id}}" th:text="${'активировать карту'}"></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

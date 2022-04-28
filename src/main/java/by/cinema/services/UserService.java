@@ -2,6 +2,7 @@ package by.cinema.services;
 
 import by.cinema.entities.Role;
 import by.cinema.entities.User;
+import by.cinema.repositories.TicketRepository;
 import by.cinema.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,7 +89,9 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
-        log.info("удаление пользователя по ID " + userId);
+        if (!user_log.getId().equals(userId)) {
+            userRepository.deleteById(userId);
+            log.info("удаление пользователя по ID " + userId);
+        }
     }
 }

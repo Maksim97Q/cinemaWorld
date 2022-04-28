@@ -10,24 +10,21 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tickets")
-public class Ticket {
+@NoArgsConstructor
+@Table(name = "bankCard")
+public class BankCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private Integer placeNumber;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Movie movies;
+    private Long cardNumber;
+    @Column
+    private Integer balance;
+    @Column
+    private String status;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Ticket(Integer placeNumber, Movie movie, User user) {
-        this.placeNumber = placeNumber;
-        this.movies = movie;
-        this.user = user;
-    }
 }

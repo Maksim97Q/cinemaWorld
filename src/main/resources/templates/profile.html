@@ -23,11 +23,11 @@
             <td th:text="${ticket.movies.price}"></td>
             <td th:text="${ticket.movies.dates}"></td>
             <td th:text="${ticket.placeNumber}"></td>
-            <!--            <td>-->
-            <!--                <div class="deleteAndUpdate">-->
-            <!--                    <a th:href="@{'/Profile/delete/ticket/' + ${ticket.id}}" th:text="${'вернуть билет'}"></a>-->
-            <!--                </div>-->
-            <!--            </td>-->
+            <td>
+                <div class="deleteAndUpdate">
+                    <a th:href="@{'/Profile/ticket/delete/' + ${ticket.id}}" th:text="${'вернуть билет'}"></a>
+                </div>
+            </td>
         </tr>
     </table>
 </div>
