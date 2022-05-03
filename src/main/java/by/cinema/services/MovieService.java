@@ -1,13 +1,16 @@
 package by.cinema.services;
 
+import by.cinema.entities.BankCard;
 import by.cinema.entities.Movie;
 import by.cinema.entities.Ticket;
 import by.cinema.entities.User;
+import by.cinema.repositories.BankCardRepository;
 import by.cinema.repositories.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import java.util.Collections;
@@ -21,6 +24,7 @@ public class MovieService {
 
     private MovieRepository movieRepository;
     private UserService userService;
+    private BankCardRepository bankCardRepository;
 
     @Autowired
     public void setMovieRepository(MovieRepository movieRepository) {
@@ -30,6 +34,11 @@ public class MovieService {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setBankCardRepository(BankCardRepository bankCardRepository) {
+        this.bankCardRepository = bankCardRepository;
     }
 
     public List<Movie> AllMovies() {
@@ -72,15 +81,20 @@ public class MovieService {
         return findMovie.orElse(new Movie());
     }
 
+    @Transactional
     public boolean buyTicketByMovie(Long id, Integer place_number) {
         User byUsername = userService.findByUsername(userService.getUser_log().getUsername());
         Movie movieById = findMovieById(id);
+        BankCard byUserIdAndForPayment = bankCardRepository.findByUserIdAndForPayment(byUsername.getId());
         boolean find_seat = movieById.getTickets().stream()
                 .anyMatch(place -> place.getPlaceNumber().equals(place_number));
-        if (!find_seat) {
+        if (!find_seat && byUserIdAndForPayment != null
+                && byUserIdAndForPayment.getBalance() >= movieById.getPrice()) {
             byUsername.setTicket(Collections.singleton(new Ticket(place_number, movieById, byUsername)));
             movieById.setFree_places(movieById.getFree_places() - 1);
+            byUserIdAndForPayment.setBalance(byUserIdAndForPayment.getBalance() - movieById.getPrice());
             userService.saveUser(byUsername);
+            bankCardRepository.save(byUserIdAndForPayment);
             return true;
         } else {
             return false;

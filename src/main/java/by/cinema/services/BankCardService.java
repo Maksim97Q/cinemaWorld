@@ -1,6 +1,7 @@
 package by.cinema.services;
 
 import by.cinema.entities.BankCard;
+import by.cinema.entities.User;
 import by.cinema.repositories.BankCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +43,14 @@ public class BankCardService {
 
     @Transactional
     public void saveCard(BankCard bankCard) {
-        bankCard.setUser(userService.getUser_log());
-        bankCard.setBalance(100);
-        bankCard.setStatus("inactive");
-        bankCardRepository.save(bankCard);
+        BankCard byCardNumber = bankCardRepository.findByCardNumber(bankCard.getCardNumber());
+        if (byCardNumber == null) {
+            bankCard.setUser(userService.getUser_log());
+            bankCard.setBalance(100);
+            bankCard.setStatus("inactive");
+            bankCard.setForPayment(false);
+            bankCardRepository.save(bankCard);
+        }
     }
 
     public BankCard findById(Long id) {
@@ -68,5 +73,20 @@ public class BankCardService {
         List<BankCard> byAll = findByAll();
         return byAll.stream().filter(p -> p.getStatus().equals("inactive"))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void findByIdForPayment(Long id) {
+        User user_log = userService.getUser_log();
+        BankCard byId = findById(id);
+        BankCard byForPayment = bankCardRepository.findByUserIdAndForPayment(user_log.getId());
+        if (byForPayment != null) {
+            byForPayment.setForPayment(false);
+            bankCardRepository.save(byForPayment);
+        }
+        if (byId.getStatus().equals("active")) {
+            byId.setForPayment(true);
+            bankCardRepository.save(byId);
+        }
     }
 }

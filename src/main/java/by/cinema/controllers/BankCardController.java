@@ -44,7 +44,7 @@ public class BankCardController {
         return CARD;
     }
 
-    @PostMapping("/Card/add")
+    @PostMapping("/Card")
     public String card(@ModelAttribute(value = "cardAdd") BankCard bankCard, Model model) {
         bankCardService.saveCard(bankCard);
         return REDIRECT_CARD;
@@ -61,6 +61,12 @@ public class BankCardController {
     public String activationCard(@PathVariable(value = "id") Long card_id, Model model) {
         bankCardService.getActivationCard(card_id);
         return REDIRECT_CARD_USER_CARD;
+    }
+
+    @GetMapping("Card/choose_for_buy/{id}")
+    public String chooseCard(@PathVariable(value = "id") Long card_id, Model model) {
+        bankCardService.findByIdForPayment(card_id);
+        return REDIRECT_CARD;
     }
 
     @GetMapping("Card/users_card")

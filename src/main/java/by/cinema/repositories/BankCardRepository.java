@@ -14,4 +14,10 @@ public interface BankCardRepository extends JpaRepository<BankCard, Long> {
 
     @Query("select b from BankCard b where b.status = 'inactive'")
     List<BankCard> findAllByStatus();
+
+    @Query("select b from BankCard b where b.user.id = ?1 and b.forPayment = true")
+    BankCard findByUserIdAndForPayment(Long id_user);
+
+    @Query("select b from BankCard b where b.cardNumber = ?1")
+    BankCard findByCardNumber(Long number);
 }

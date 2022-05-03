@@ -2,11 +2,12 @@
 <meta charset="utf-8">
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/css/style.css}">
     <title>Title</title>
 </head>
 <div th:insert="link :: links"></div>
 <body>
+
 <h2 style="margin: 10px 10px 10px 650px" class="h2_table_movie">Ваш список билетов</h2>
 <div>
     <table class="table" style="margin-left: 25%">
@@ -16,6 +17,7 @@
             <th>price_BYN</th>
             <th>date</th>
             <th>place_number</th>
+            <th>return</th>
         </tr>
         <tr th:each="ticket, lp : ${user_newTicket}">
             <td th:text="${ticket.id}"></td>
@@ -25,7 +27,7 @@
             <td th:text="${ticket.placeNumber}"></td>
             <td>
                 <div class="deleteAndUpdate">
-                    <a th:href="@{'/Profile/ticket/delete/' + ${ticket.id}}" th:text="${'вернуть билет'}"></a>
+                    <a th:href="@{'/Profile/ticket/delete/' + ${ticket.id}}" th:text="${'вернуть'}"></a>
                 </div>
             </td>
         </tr>

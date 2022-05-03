@@ -19,7 +19,7 @@ public class Ticket {
     private Long id;
     @Column
     private Integer placeNumber;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Movie movies;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

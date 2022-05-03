@@ -23,6 +23,8 @@ public class BankCard {
     private Integer balance;
     @Column
     private String status;
+    @Column
+    private boolean forPayment;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
