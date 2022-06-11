@@ -31,4 +31,12 @@ public class Movie {
     @OneToMany(mappedBy = "movies", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
     private Set<Ticket> tickets;
+
+    public Movie(Long id, String name_Movie, String dates, Integer price, Integer free_places) {
+        this.id = id;
+        this.name_Movie = name_Movie;
+        this.dates = dates;
+        this.price = price;
+        this.free_places = free_places;
+    }
 }
