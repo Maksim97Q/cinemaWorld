@@ -53,6 +53,7 @@ class MovieServiceTest {
                 .collect(Collectors.toList());
         List<Movie> movies = movieService.AllMoviesWithFilter("1");
         assertEquals(movies, collect);
+        assertEquals(1, collect.size());
     }
 
     @Test
@@ -61,12 +62,34 @@ class MovieServiceTest {
         movieList.add(new Movie(1L, "1+1", "12-12-2022", 7, 20));
         movieList.add(new Movie(1L, "---", "12-12-2022", 7, 20));
         when(movieService.AllMoviesWithFilter(null)).thenReturn(movieList);
-        assertEquals(2, movieService.AllMoviesWithFilter(null).size());
+        List<Movie> movies = movieService.AllMoviesWithFilter(null);
+        assertEquals(2, movies.size());
         verify(movieRepository, times(1)).findAll();
     }
 
     @Test
     void movieByDate() {
+        List<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie(1L, "1+1", "12-12-2022", 3, 22));
+        movieList.add(new Movie(2L, "--", "11-12-2022", 3, 22));
+        when(movieRepository.findAll()).thenReturn(movieList);
+        List<Movie> collect = movieRepository.findAll().stream()
+                .filter(p -> p.getDates().contains("11-12-2022"))
+                .collect(Collectors.toList());
+        movieService.movieByDate("11-12-2022");
+        assertEquals(1, collect.size());
+    }
+
+    @Test
+    void movieByDateReturnFindAll() {
+        List<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie(1L, "1+1", "12-12-2022", 3, 22));
+        movieList.add(new Movie(2L, "--", "11-12-2022", 3, 22));
+        when(movieService.movieByDate(null)).thenReturn(movieList);
+        List<Movie> movies = movieService.movieByDate(null);
+        assertEquals(2, movies.size());
+        verify(movieRepository, times(1)).findAll();
+
     }
 
     @Test

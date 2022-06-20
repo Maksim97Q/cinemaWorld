@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,6 @@ class BankCardServiceTest {
         bankCard1.setStatus("inactive");
         bankCard1.setForPayment(false);
         verify(bankCardRepository, times(1)).save(bankCard1);
-
     }
 
     @Test
@@ -74,7 +73,6 @@ class BankCardServiceTest {
         verify(bankCardRepository, times(1)).findById(1L);
         BankCard bankCard = bankCardService.findById(1L);
         assertNotNull(bankCard);
-
     }
 
     @Test
@@ -111,14 +109,19 @@ class BankCardServiceTest {
 
     @Test
     void findByIdForPayment() {
-//        BankCard bankCard1 = new BankCard(1L, 66L, 10, "active", true, new User());
-//        BankCard bankCard2 = new BankCard(1L, 66L, 10, "active", true, new User());
-//        when(bankCardRepository.findById(bankCard1.getId())).thenReturn(Optional.of(bankCard1));
-//        when(bankCardRepository.findByUserIdAndForPayment(userService.getUser_log().getId()))
-//                .thenReturn(bankCard2);
-//        assertNotNull(bankCard2);
-//        assertEquals("active", bankCard1.getStatus());
-//        bankCardService.findByIdForPayment(bankCard1.getId());
-//        verify(bankCardRepository, times(1)).save(bankCard1);
+        User user = new User(1L, "max", "555");
+        BankCard bankCard = new BankCard(1L, 33L, 44, "active", true, new User());
+        when(bankCardRepository.findById(1L)).thenReturn(Optional.of(bankCard));
+        when(userService.getUser_log()).thenReturn(user);
+        when(bankCardRepository.findByUserIdAndForPayment(1L)).thenReturn(bankCard);
+        BankCard byUserIdAndForPayment = bankCardRepository.findByUserIdAndForPayment(1L);
+        Optional<BankCard> byId = bankCardRepository.findById(1L);
+        assertNotNull(byUserIdAndForPayment);
+        byUserIdAndForPayment.setForPayment(false);
+        assertTrue(byId.isPresent());
+        assertEquals(byId.get().getStatus(), "active");
+        byId.get().setForPayment(true);
+        bankCardService.findByIdForPayment(1L);
+        verify(bankCardRepository, times(2)).save(byUserIdAndForPayment);
     }
 }
